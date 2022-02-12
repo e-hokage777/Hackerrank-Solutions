@@ -3,7 +3,7 @@ def findDigits(n):
 	num = int(n)
 	count = 0
 
-	for i in n:
+	for i in str(n):
 		digit = int(i)
 		if digit != 0 and num%digit == 0:
 			count+=1
