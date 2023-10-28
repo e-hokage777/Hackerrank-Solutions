@@ -3,13 +3,15 @@ import sys
 states = {"alt2": 0, "full": 1, "alt": 2}
 
 def bomberMan(n, grid):
-    current_state = states["init"]
+    current_state = states["alt2"]
     
     if n > 1:
         if n%2 == 0:
             current_state = states["full"]
         elif in_alt_series(n):
-            current_state = states["alt2"]
+            current_state = states["alt"]
+    else:
+        return grid
 
     return create_ans_grid(grid, current_state)
 
@@ -20,7 +22,6 @@ def create_ans_grid(grid, state):
         case 1:
             return create_full_grid(grid)
         case 2:
-            print("here")
             return create_alt_grid(grid)
         
 
@@ -59,4 +60,4 @@ def in_alt_series(n):
 if __name__=="__main__":
     lines = sys.stdin.readlines()
     lines = list(map(lambda x: x.strip(), lines))
-    print("\n".join(bomberMan(5,lines)))
+    print("\n".join(bomberMan(3,lines)))
