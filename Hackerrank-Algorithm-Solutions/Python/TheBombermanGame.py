@@ -22,6 +22,7 @@ def create_ans_grid(grid, state):
         case 1:
             return create_full_grid(grid)
         case 2:
+            print("alting")
             return create_alt_grid(grid)
         
 
@@ -54,10 +55,11 @@ def create_alt_grid(grid):
     return list(map(lambda x: "".join(x), full_grid))
 
 def in_alt_series(n):
-    return ((n-3)/4)%4 == 0
+    return (n+1)%4 == 0
 
 
 if __name__=="__main__":
-    lines = sys.stdin.readlines()
-    lines = list(map(lambda x: x.strip(), lines))
-    print("\n".join(bomberMan(3,lines)))
+    lines = input("Enter rows (space separated):")
+    lines = lines.split(",")
+    n = int(input("Number of seconds: "))
+    print(bomberMan(n, lines))
