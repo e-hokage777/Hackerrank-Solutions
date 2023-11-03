@@ -1,8 +1,11 @@
 import re
 import math
 
+
+
 def insertion_sort(l):
     for i in range(len(l)):
+        if i > len(l)/2: return
         j = i-1
         while(j >= 0 and l[i] < l[j]):
             temp = l[i]
@@ -12,9 +15,24 @@ def insertion_sort(l):
             j-=1
             i-=1
 
+def bubble_sort(l):
+    n = len(l)
+    swapped = False
+    for i in range(n-1):
+        for j in range(n-1-i):
+            if l[j] > l[j+1]:
+                temp = l[j+1]
+                l[j+1] = l[j]
+                l[j] = temp
+                swapped = True
+
+        if not swapped:
+            return
+        elif i > n/2:
+            return
+
 def median(data):
-    # insertion_sort(data)
-    data = sorted(data)
+    bubble_sort(data)
     median_pos = len(data)/2
     if(median_pos%2 == 0):
         median_pos = int(median_pos)
@@ -25,19 +43,13 @@ def median(data):
 def activityNotifications(expenditure, d):
     n = len(expenditure)
     count = 0
-    median_window = expenditure[0:d]
 
     for i in range(n-d):
-        median_expenditure = median(median_window)
+        median_expenditure = median(expenditure[i:i+d])
         target = expenditure[i+d]
-        print(median_expenditure)
 
         if(target >= 2*median_expenditure):
             count += 1
-
-        ## updating the median window
-        del median_window[0]
-        median_window.append(target)
     
     return count
 
