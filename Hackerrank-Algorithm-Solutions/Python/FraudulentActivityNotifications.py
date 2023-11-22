@@ -19,8 +19,9 @@ def bin_search(l, data):
     return left
 
 def median(data):
-    median_pos = len(data)/2
-    if median_pos % 2 == 0:
+    n = len(data)
+    median_pos = n/2
+    if n % 2 == 0:
         median_pos = int(median_pos)
         return (data[median_pos] + data[median_pos - 1]) / 2
     else:
@@ -51,15 +52,26 @@ def activityNotifications(expenditure, d):
 
         update_median_window(median_window, to_remove, target)
 
+
     return count
 
 
-if __name__ == "__main__":
-    n = int(input("Number of transaction days => "))
-    d = int(input("Number of trailing days => "))
-    expenditure = re.split("\s+", input("Expenidture (space separated) => "))
-    expenditure = list(map(int, expenditure))
+# if __name__ == "__main__":
+#     n = int(input("Number of transaction days => "))
+#     d = int(input("Number of trailing days => "))
+#     expenditure = re.split("\s+", input("Expenidture (space separated) => "))
+#     expenditure = list(map(int, expenditure))
+#     print(len(expenditure))
+#     if len(expenditure) == n:
+#         print(activityNotifications(expenditure, d))
+#     else:
+#         print("Wrong Number of expenditure inputs")
 
+## reading from file
+if __name__ == "__main__":
+    with open("../../../tests/input03.txt", "r") as file:
+        n, d = map(int,next(file).split())
+        expenditure = list(map(int,next(file).split()))
     if len(expenditure) == n:
         print(activityNotifications(expenditure, d))
     else:
