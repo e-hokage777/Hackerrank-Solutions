@@ -14,10 +14,25 @@ def findStrings(w, queries):
     for string in w:
         S = S.union(get_substrings(string))
 
-    print(sorted(S)) 
+    S = sorted(S)
+
+    result = []
+    for query in queries:
+        if query <= len(S):
+            result.append(S[query-1])
+        else:
+            result.append("INVALID")
+
+    return result
 
 if __name__ == "__main__":
-    w = ["aab", "aac"]
-    q = [3,3,8,23]
+    n = int(input("Number of Strings => "))
+    strings = []
+    queries = []
 
-    findStrings(w,q)
+    for i in range(n):
+        strings.append(input("Add String => "))
+
+    queries = list(map(int, input("Indices to query(Space separated): ").split()))
+
+    print("\n".join(findStrings(strings,queries)))
